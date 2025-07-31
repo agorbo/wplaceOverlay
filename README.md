@@ -18,8 +18,15 @@
 ### Adjust blueprints
 - In the ./blueprints folder there will be a copy of the canvas, created when you initially added its path to the config
 - Edit this (e.g. in GIMP) to only keep pixels you want to include in your overlay
+- These blueprints will only be *read* by the script, and *not manipulated automatically* after creation. Use them to set up your overlay by deleting everything you don't care about.
 
 ### Patch browser
 - The javascript browser patch is inspired by [cfp](https://github.com/cfpwastaken/wplace-overlay)
 - **EITHER** paste the contents of `browserpatch.js` into your browser console every time you want to activate the overlay,
 - **OR** add a bookmark to your browser, make it point to `javascript:` and paste the browserpatch.js file contents there. This only needs to be clicked then to activate the overlay.
+
+### Results
+- After you run the browserpatch in console or by clicking the bookmark, the next time the browser updates the resources (few seconds at max.) it will be rerouted to your python server.
+- Pixels that don't satisfy your blueprint will be outlined with a thick and transparent pink border, and the desired pixel from the blueprint will be displayed with a light transparency.
+- Paint over it with the same color to fix.
+- The overlay should update automatically in a few seconds.
