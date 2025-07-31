@@ -1,12 +1,14 @@
 # wplaceOverlay
 - This is an overlay for [wplace](https://wplace.live/)
-- It reads blueprint files and will display the difference if the canvas is out of sync
+- It reads blueprint files and will display the difference if the canvas is out of sync.
+- This can be used to protect your artworks against vandalism, by making it easy to fix them.
 - I am not associated with wplace. If you use this code to violate the terms of use, do so at your own risk
 
-# Usage
+# Usage ([tldr](https://github.com/clrfl/wplaceOverlay/tree/main?tab=readme-ov-file#tldr-for-tech-savvy-people))
 ### Setup config.json
 - The config.json defines which areas you want to include in the overlay
-- To obtain the path of the wplace backend files, open the network tab of your browser (F12, Network), and navigate to the respective area on the map. It will show up as one of the .png files. Find yours, and look at the path.
+- To obtain the path of the wplace tiles in which your artwork is located, open the network tab of your browser (F12, »Network«), and navigate to the respective area on the map in your browser.
+- Your canvas area will show up as one of the .png files. Find yours, and look at the path.
 - Add the last 2 numbers of the .png path **as one separate entry** to your config.json
 - Example: `https://backend.wplace.live/files/s0/tiles/1100/670.png` => `[ ["1100","670"], ... ]`
 
@@ -30,3 +32,9 @@
 - Pixels that don't satisfy your blueprint will be outlined with a thick and transparent pink border, and the desired pixel from the blueprint will be displayed with a light transparency.
 - Paint over it with the same color to fix.
 - The overlay should update automatically in a few seconds.
+
+# TLDR for tech-savvy people
+1. write tile IDs into `config.json`
+2. run `main.py`, keep running
+3. update blueprints in /blueprints/
+4. run `browserpatch.js` in console
