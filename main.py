@@ -31,10 +31,10 @@ def updateImage():
             os.makedirs(os.path.dirname(blueprintpath), exist_ok=True)
             shutil.copyfile(basepath, blueprintpath)
 
-        basepic = Image.open(basepath).convert('RGB')
+        basepic = Image.open(basepath).convert('RGBA')
         basepix = basepic.load()
 
-        blueprint = Image.open(blueprintpath).convert('RGB')
+        blueprint = Image.open(blueprintpath).convert('RGBA')
         blueprintpix = blueprint.load()
 
         width, height = basepic.size
@@ -42,12 +42,12 @@ def updateImage():
 
         for x in range(width):
             for y in range(height):
-                if blueprintpix[x, y] != (0,0,0) and blueprintpix[x,y] != basepix[x,y]:
+                if blueprintpix[x, y] != (0,0,0,0) and blueprintpix[x,y] != basepix[x,y]:
                     missing_pix += 1
                     basepix[x,y] = blueprintpix[x,y]
                     identical = False
                 else:
-                    basepix[x,y] = (255,0,255)
+                    basepix[x,y] = (255,0,255,127)
 
         if identical:
             with open(basepath, 'wb') as handler:
