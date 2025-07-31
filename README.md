@@ -4,7 +4,7 @@
 - This can be used to protect your artworks against vandalism, by making it easy to fix them.
 - I am not associated with wplace. If you use this code to violate the terms of use, do so at your own risk
 
-## Usage ([tldr](https://github.com/clrfl/wplaceOverlay/tree/main?tab=readme-ov-file#tldr-for-tech-savvy-people))
+## Usage ([tldr](https://github.com/clrfl/wplaceOverlay/tree/main#tldr-for-tech-savvy-people))
 ### Setup config.json
 - The config.json defines which areas you want to include in the overlay
 - To obtain the path of the wplace tiles in which your artwork is located, open the network tab of your browser (F12, »Network«), and navigate to the respective area on the map in your browser.
