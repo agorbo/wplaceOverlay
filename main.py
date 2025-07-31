@@ -48,13 +48,14 @@ def updateImage():
             for y in range(height):
                 if blueprintpix[x, y] != (0,0,0,0) and blueprintpix[x,y] != basepix[x,y]:
                     missing_pix += 1
-                    basepix[x,y] = blueprintpix[x,y]
+                    bppix = blueprintpix[x,y]
+                    basepix[x,y] = (bppix[0], bppix[1], bppix[2], 230)
                     identical = False
-                    for i in range(7):
-                        for j in range(7):
-                            diffarea[str(x+3-i)+","+str(y+3-j)] = True
+                    for i in range(11):
+                        for j in range(11):
+                            diffarea[str(x+5-i)+","+str(y+5-j)] = True
                 else:
-                    basepix[x,y] = (255,0,255,127)
+                    basepix[x,y] = (255,0,255,80)
 
         if identical:
             with open(basepath, 'wb') as handler:
