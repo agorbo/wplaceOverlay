@@ -32,13 +32,17 @@ def updateImage():
             shutil.copyfile(basepath, blueprintpath)
 
         basepic = Image.open(basepath).convert('RGBA')
+        basepicOrig = basepic.copy()
+
         basepix = basepic.load()
+        basepixOrig = basepicOrig.load()
 
         blueprint = Image.open(blueprintpath).convert('RGBA')
         blueprintpix = blueprint.load()
 
         width, height = basepic.size
         identical = True
+        diffarea = {}
 
         for x in range(width):
             for y in range(height):
@@ -46,6 +50,9 @@ def updateImage():
                     missing_pix += 1
                     basepix[x,y] = blueprintpix[x,y]
                     identical = False
+                    for i in range(7):
+                        for j in range(7):
+                            diffarea[str(x+3-i)+","+str(y+3-j)] = True
                 else:
                     basepix[x,y] = (255,0,255,127)
 
@@ -53,6 +60,10 @@ def updateImage():
             with open(basepath, 'wb') as handler:
                 handler.write(img_data)
         else:
+            for x in range(width):
+                for y in range(height):
+                    if diffarea.get(str(x)+","+str(y), False) == False:
+                        basepix[x,y] = basepixOrig[x,y]
             basepic.save(basepath, 'PNG')
     print("Updated diff. Missing pixels: {} ~ {} hours to regenerate".format(missing_pix, round(missing_pix / 2 / 60,1)))
 
