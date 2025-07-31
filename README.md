@@ -8,7 +8,7 @@
 - The config.json defines which areas you want to include in the overlay
 - To obtain the path of the wplace backend files, open the network tab of your browser (F12, Network), and navigate to the respective area on the map. It will show up as one of the .png files. Find yours, and look at the path.
 - Add the last 2 numbers of the .png path **as one separate entry** to your config.json
-- Example: `https://backend.wplace.live/files/s0/tiles/1100/670.png` => `[ ["1100","670"] ]`
+- Example: `https://backend.wplace.live/files/s0/tiles/1100/670.png` => `[ ["1100","670"], ... ]`
 
 ### Run server
 - Execute main.py in python
