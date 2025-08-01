@@ -16,7 +16,12 @@
 - Execute main.py in python
 - It will calculate the overlay and start an http server, which serves it to your browser
 - Keep this running while you want to use the overlay
- 
+
+> [!TIP]
+> If you don't have any experience with programming, and struggle to get the python script running:
+> You can download python from [Python.org](https://www.python.org/), and install the required packages using `pip`.
+> There are guides on the internet that will help you with that.
+
 ### Adjust blueprints
 - In the ./blueprints folder there will be a copy of the canvas, created when you initially added its path to the config
 - Edit this (e.g. in GIMP) to only keep pixels you want to include in your overlay
