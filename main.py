@@ -42,29 +42,32 @@ def updateImage():
 
         width, height = basepic.size
         identical = True
-        diffarea = {}
+        xmin = 999
+        xmax = 0
+        ymin = 999
+        ymax = 0
+        diff = []
 
         for x in range(width):
             for y in range(height):
                 if blueprintpix[x, y] != (0,0,0,0) and blueprintpix[x,y] != basepix[x,y]:
                     missing_pix += 1
                     bppix = blueprintpix[x,y]
-                    basepix[x,y] = (bppix[0], bppix[1], bppix[2], 230)
                     identical = False
-                    for i in range(11):
-                        for j in range(11):
-                            diffarea[str(x+5-i)+","+str(y+5-j)] = True
-                else:
-                    basepix[x,y] = (255,0,255,80)
+                    xmin = min(x, xmin)
+                    xmax = max(x, xmax)
+                    ymin = min(y, ymin)
+                    ymax = max(y, ymax)
+                    diff.append([(x, y), (bppix[0], bppix[1], bppix[2], 230)])
 
-        if identical:
-            with open(basepath, 'wb') as handler:
-                handler.write(img_data)
-        else:
-            for x in range(width):
-                for y in range(height):
-                    if diffarea.get(str(x)+","+str(y), False) == False:
-                        basepix[x,y] = basepixOrig[x,y]
+        if not identical:
+            for x in range(xmin-4,xmax+4):
+                for y in range(ymin-4,ymax+4):
+                    if x < 0 or y < 0 or x > 999 or y > 999:
+                        continue
+                    basepix[x, y] = (255, 0, 255, 80)
+            for el in diff:
+                basepix[el[0]] = el[1]
             basepic.save(basepath, 'PNG')
     print("Updated diff. Missing pixels: {} ~ {} hours to regenerate".format(missing_pix, round(missing_pix / 2 / 60,1)))
 
