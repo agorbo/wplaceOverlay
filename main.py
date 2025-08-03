@@ -32,10 +32,7 @@ def updateImage():
             shutil.copyfile(basepath, blueprintpath)
 
         basepic = Image.open(basepath).convert('RGBA')
-        basepicOrig = basepic.copy()
-
         basepix = basepic.load()
-        basepixOrig = basepicOrig.load()
 
         blueprint = Image.open(blueprintpath).convert('RGBA')
         blueprintpix = blueprint.load()
