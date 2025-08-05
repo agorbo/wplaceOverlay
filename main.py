@@ -55,7 +55,7 @@ def updateImage():
                     xmax = max(x, xmax)
                     ymin = min(y, ymin)
                     ymax = max(y, ymax)
-                    diff.append([(x, y), (bppix[0], bppix[1], bppix[2], 230)])
+                    diff.append([(x, y), (bppix[0], bppix[1], bppix[2], 255)])
 
         if not identical:
             for x in range(xmin-4,xmax+5):
