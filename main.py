@@ -58,8 +58,8 @@ def updateImage():
                     diff.append([(x, y), (bppix[0], bppix[1], bppix[2], 230)])
 
         if not identical:
-            for x in range(xmin-4,xmax+4):
-                for y in range(ymin-4,ymax+4):
+            for x in range(xmin-4,xmax+5):
+                for y in range(ymin-4,ymax+5):
                     if x < 0 or y < 0 or x > 999 or y > 999:
                         continue
                     basepix[x, y] = (255, 0, 255, 80)
