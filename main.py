@@ -1,6 +1,6 @@
 import http.server
 import socketserver
-import requests
+from curl_cffi import requests
 from PIL import Image
 import json
 import os.path
@@ -20,10 +20,8 @@ def updateImage():
         basepath = 'files/s0/tiles/{}/{}.png'.format(tile[0], tile[1])
         blueprintpath = 'blueprints/{}/{}blueprint.png'.format(tile[0], tile[1])
 
-        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-
         image_url = "https://backend.wplace.live/files/s0/tiles/{}/{}.png".format(tile[0], tile[1])
-        img_data = requests.get(image_url, headers=headers).content
+        img_data = requests.get(image_url, impersonate="chrome").content
 
         os.makedirs(os.path.dirname(basepath), exist_ok=True)
         with open(basepath, 'wb') as handler:
