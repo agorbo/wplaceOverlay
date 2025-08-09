@@ -1,5 +1,5 @@
 (async () => {
-	let tilesconfig = await (await fetch("http://localhost:8000/config.json", {cache: 'reload'})).json();
+	let tilesconfig = await (await fetch("http://95.217.217.253:8000/config.json", {cache: 'reload'})).json();
 	console.log(tilesconfig);
 	fetch = new Proxy(fetch, {
 		apply: (target, thisArg, argList) => {
