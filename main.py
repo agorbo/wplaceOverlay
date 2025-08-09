@@ -75,8 +75,12 @@ class CORSHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header('Access-Control-Allow-Origin', '*')
 
 with socketserver.TCPServer(("", PORT), CORSHandler) as httpd:
-    while True:
-        updateImage()
-        httpd.timeout = 60
-        httpd.handle_request()
+    try:
+        while True:
+            updateImage()
+            httpd.timeout = 60
+            httpd.handle_request()
+    except KeyboardInterrupt:
+        print("\nKeyboard interrupt received, exiting.")
+        httpd.server_close()
 
