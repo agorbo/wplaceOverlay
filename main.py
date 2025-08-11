@@ -74,6 +74,15 @@ class CORSHandler(http.server.SimpleHTTPRequestHandler):
         http.server.SimpleHTTPRequestHandler.send_response(self, *args, **kwargs)
         self.send_header('Access-Control-Allow-Origin', '*')
 
+    def do_GET(self):
+        # Strip /wplace prefix from incoming requests
+        if self.path.startswith("/wplace/"):
+            self.path = self.path[len("/wplace"):]
+        elif self.path == "/wplace":
+            self.path = "/"
+        return super().do_GET()
+
+
 with socketserver.TCPServer(("", PORT), CORSHandler) as httpd:
     try:
         while True:
