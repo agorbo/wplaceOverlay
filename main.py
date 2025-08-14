@@ -117,6 +117,8 @@ app.add_middleware(
 )
 
 # Mount static directories
+Path("files").mkdir(parents=True, exist_ok=True)
+Path("blueprints").mkdir(parents=True, exist_ok=True)
 app.mount("/files", StaticFiles(directory="files"), name="files")
 app.mount("/blueprints", StaticFiles(directory="blueprints"), name="blueprints")
 
