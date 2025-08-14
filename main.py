@@ -4,4 +4,4 @@ app = FastAPI()
 
 @app.get("/wplace/")
 async def root():
-    return {"message": "Hello, FastAPI!"}
+    return {"message": "Vika loh"}
