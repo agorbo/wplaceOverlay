@@ -1,16 +1,28 @@
-version: '3.9'
-
 services:
-  fastapi:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '8000:80'
-    volumes:
-      - .:/app
-    environment:
-      - PYTHONUNBUFFERED=1
+      - "8000:80"
+    develop:
+      watch:
+        # Sync all source code into the container except the .venv directory
+        - action: sync
+          path: .
+          target: /app
+          ignore:
+            - .venv/
 
-volumes:
-  app:
+        # Rebuild if dependencies change
+        - action: rebuild
+          path: ./pyproject.toml
+        - action: rebuild
+          path: ./uv.lock
+
+    # Command to start fastapi with reload
+    command: ["/app/.venv/bin/fastapi", "dev", "main.py", "--host", "0.0.0.0", "--port", "80"]
+
+    # Prevent container from including your local .venv
+    volumes:
+      - /app/.venv
