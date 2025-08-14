@@ -106,7 +106,10 @@ async def lifespan(_: FastAPI):
             await task
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(
+    lifespan=lifespan,
+    root_path="/wplace",
+)
 
 app.add_middleware(
     CORSMiddleware,
